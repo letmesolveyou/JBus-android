@@ -10,11 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
+    private Button registerButton =null;
+    private EditText usernameEdit;
     private EditText emailEdit;
     private EditText passwordEdit;
-    private TextView registerNow = null;
-    private Button loginButton =null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,18 +24,14 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
+        usernameEdit = findViewById(R.id.username);
         emailEdit = findViewById(R.id.email);
         passwordEdit = findViewById(R.id.password);
-        registerNow = findViewById(R.id.register_now);
-        loginButton = findViewById(R.id.login_button);
+        registerButton = findViewById(R.id.register_button);
 
-        registerNow.setOnClickListener(v -> {
-            moveActivity(this, RegisterActivity.class);
-        });
-
-        loginButton.setOnClickListener(v -> {
+        registerButton.setOnClickListener(v -> {
             moveActivity(this, MainActivity.class);
         });
     }
