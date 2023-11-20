@@ -93,9 +93,8 @@ public class MainActivity extends AppCompatActivity {
         }
         for (int i = 0; i < noOfPages; i++) {
             btns[i] = new Button(this);
-            btns[i].setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
+            btns[i].setBackgroundColor(getResources().getColor(android.R.color.transparent));
             btns[i].setText("" + (i + 1));
-            // Change color
             btns[i].setTextColor(getResources().getColor(R.color.black));
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(100, 100);
             ll.addView(btns[i], lp);
@@ -131,9 +130,6 @@ public class MainActivity extends AppCompatActivity {
         int startIndex = page * pageSize;
         int endIndex = Math.min(startIndex + pageSize, listBus.size());
         List<Bus> paginatedList = listBus.subList(startIndex, endIndex);
-        ArrayAdapter<Bus> BusArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Bus.sampleBusList(pageSize));
-        android.widget.ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(BusArrayAdapter);
 
         BusArrayAdapter numberArrayAdapt = new BusArrayAdapter(this, paginatedList);
         ListView numberListView = findViewById(R.id.listView);

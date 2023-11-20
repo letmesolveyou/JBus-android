@@ -12,9 +12,8 @@
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".MainActivity">
-        </ListView>
+            android:layout_height="342dp"
+            tools:context=".MainActivity"></ListView>
 
         <LinearLayout
             android:id="@+id/pagination_footer"
@@ -35,7 +34,6 @@
                     android:id="@+id/page_number_scroll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                 android:layout_weight="25"
                 android:paddingHorizontal="18dp">
                 <LinearLayout

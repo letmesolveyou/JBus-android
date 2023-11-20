@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    tools:ignore="UselessParent">
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/busNameTextView"
@@ -13,7 +12,5 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:padding="10dp"/>
-
-</LinearLayout>
 
 </LinearLayout>

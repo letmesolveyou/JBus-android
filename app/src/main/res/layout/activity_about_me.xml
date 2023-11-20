@@ -16,7 +16,7 @@
         android:layout_marginVertical="24dp"
         android:background="@drawable/circle"
         android:textColor="@color/white"
-        android:text="P"
+        android:text="S"
         android:textSize="48dp"
         android:gravity="center"
         />

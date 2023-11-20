@@ -40,6 +40,3 @@ public class AboutMeActivity extends AppCompatActivity {
         balanceTextView.setText("$1000000000.00");
     }
 }
-
-
-}
