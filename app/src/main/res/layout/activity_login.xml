@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#F5F5EE"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".LoginActivity"> <!-- Add this line -->
@@ -68,10 +68,12 @@
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
+            android:backgroundTint="#D3F26B"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
             android:text="LOGIN"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:cornerRadius="21dp" />
 
         <TextView
@@ -99,4 +101,5 @@
             android:textStyle="bold" />
 
     </LinearLayout>
+
 </LinearLayout>

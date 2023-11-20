@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    android:background="#F5F5EE"
     android:gravity="center"
-    android:orientation="vertical"> <!-- Add this line -->
+    android:orientation="vertical"
+    tools:context=".LoginActivity"> <!-- Add this line -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="-25dp"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
         android:text="Register your account"
-        android:layout_marginLeft="-25dp"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -23,8 +23,8 @@
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="36dp">
+        android:layout_marginHorizontal="36dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/usernametitle"
@@ -44,7 +44,7 @@
             android:layout_marginBottom="10dp"
             android:hint="Type your username"
             android:inputType="textEmailAddress"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/emailtitle"
@@ -64,7 +64,7 @@
             android:layout_marginBottom="10dp"
             android:hint="Type your email"
             android:inputType="textEmailAddress"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/passtitle"
@@ -83,14 +83,17 @@
             android:layout_marginBottom="10dp"
             android:hint="Type your password"
             android:inputType="textPassword"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
+            android:backgroundTint="#D3F16B"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
             android:text="REGISTER"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"
+            app:cornerRadius="21dp" />
     </LinearLayout>
 </LinearLayout>
