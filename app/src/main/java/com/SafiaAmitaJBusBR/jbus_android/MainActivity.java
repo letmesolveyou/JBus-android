@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private int listSize;
     private int noOfPages;
     private List<Bus> listBus = new ArrayList<>();
-    private Button prevButton = null;
-    private Button nextButton = null;
+    private Button prevButton, nextButton = null;
     private ListView busListView = null;
     private HorizontalScrollView pageScroll = null;
     @Override
