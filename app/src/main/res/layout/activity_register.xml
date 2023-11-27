@@ -7,7 +7,7 @@
     android:background="#F5F5EE"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".LoginActivity"> <!-- Add this line -->
+    tools:context=".RegisterActivity"> <!-- Add this line -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -27,7 +27,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/usernametitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"
@@ -47,7 +46,6 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/emailtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"
@@ -67,7 +65,6 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/passtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"

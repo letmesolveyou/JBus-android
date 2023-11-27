@@ -12,11 +12,12 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="-20dp"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
-        android:text="JBUS"
+        android:text="Register your company"
         android:textColor="@color/black"
-        android:textSize="40sp" />
+        android:textSize="25sp" />
 
     <LinearLayout
         android:id="@+id/login_form"
@@ -26,78 +27,68 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/emailtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="Email"
+            android:gravity="center"
+            android:text="Company Name"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/companyName"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="10dp"
-            android:hint="Type your email"
-            android:inputType="textEmailAddress"
+            android:hint="Type your company name"
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/passtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="Password"
+            android:gravity="center"
+            android:text="Address"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="10dp"
+            android:hint="Type your company address"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:gravity="center"
+            android:text="Phone Number"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginBottom="10dp"
-            android:hint="Type your password"
-            android:inputType="textPassword"
+            android:hint="Type your company phone number"
+            android:inputType="number"
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/login_button"
+            android:id="@+id/registerCompany_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#D3F26B"
+            android:backgroundTint="#D3F16B"
             android:paddingHorizontal="16dp"
             android:paddingVertical="10dp"
-            android:text="LOGIN"
-            android:textAllCaps="false"
+            android:text="REGISTER"
             android:textColor="@color/black"
             app:cornerRadius="21dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="Don't have an account?"
-            android:textAlignment="center"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/register_now"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:paddingHorizontal="16dp"
-            android:text="Register Now"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
     </LinearLayout>
-
 </LinearLayout>

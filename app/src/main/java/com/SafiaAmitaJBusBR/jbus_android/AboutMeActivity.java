@@ -21,8 +21,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AboutMeActivity extends AppCompatActivity {
-    private Button topUpButton =null;
-    private TextView usernameEdit, emailEdit, balanceEdit, profileInitial;
+    private Button topUpButton, manageBusButton =null;
+    private TextView usernameEdit, emailEdit, balanceEdit, profileInitial, registerCompany;
     private EditText topUpBalance;
     private BaseApiService mApiService;
     private Context mContext;
@@ -30,6 +30,21 @@ public class AboutMeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (LoginActivity.loggedAccount.company == null) {
+            setContentView(R.layout.activity_about_me);
+            TextView registerCompany = findViewById(R.id.registerCompany);
+            registerCompany.setOnClickListener(v -> {
+                moveActivity(this, RegisterRenterActivity.class);
+            });
+        }
+        else{
+            setContentView(R.layout.activity_about_me_registered);
+            Button manageBusButton = findViewById(R.id.manageBus_button);
+            manageBusButton.setOnClickListener(v -> {
+                moveActivity(this, ManageBusActivity.class);
+            });
+        }
+
         try {
             getSupportActionBar().hide();
         } catch (NullPointerException e) {
@@ -50,8 +65,6 @@ public class AboutMeActivity extends AppCompatActivity {
         Double doub = LoginActivity.loggedAccount.balance;
         String balanceS = doub.toString();
 
-        Button topUp = findViewById(R.id.topUp_button);
-
         profileInitial.setText(initialS);
         name.setText(nameS);
         email.setText(emailS);
@@ -59,7 +72,8 @@ public class AboutMeActivity extends AppCompatActivity {
         mContext = this;
         mApiService = UtilsApi.getApiService();
 
-        topUp.setOnClickListener(v-> {
+        Button topUp = findViewById(R.id.topUp_button);
+        topUp.setOnClickListener(v -> {
             handleTopup();
         });
     }
@@ -106,6 +120,7 @@ public class AboutMeActivity extends AppCompatActivity {
                 Toast.makeText(mContext, "Problem with the server",
                         Toast.LENGTH_SHORT).show();
             }
+
         });
     }
 
