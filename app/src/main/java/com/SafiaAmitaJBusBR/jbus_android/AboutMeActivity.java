@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.SafiaAmitaJBusBR.jbus_android.model.Account;
 import com.SafiaAmitaJBusBR.jbus_android.model.BaseResponse;
 import com.SafiaAmitaJBusBR.jbus_android.request.BaseApiService;
 import com.SafiaAmitaJBusBR.jbus_android.request.UtilsApi;
@@ -21,107 +21,106 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AboutMeActivity extends AppCompatActivity {
-    private Button topUpButton, manageBusButton =null;
-    private TextView usernameEdit, emailEdit, balanceEdit, profileInitial, registerCompany;
-    private EditText topUpBalance;
     private BaseApiService mApiService;
     private Context mContext;
-    private String userEditText;
+    TextView initial = null;
+    TextView username = null;
+    TextView email = null;
+    TextView balance = null;
+    TextView statusRenter = null;
+    TextView registerCompany = null;
+    EditText amount = null;
+    Button topUpButton = null;
+    Button manageBus = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (LoginActivity.loggedAccount.company == null) {
-            setContentView(R.layout.activity_about_me);
-            TextView registerCompany = findViewById(R.id.registerCompany);
-            registerCompany.setOnClickListener(v -> {
-                moveActivity(this, RegisterRenterActivity.class);
-            });
-        }
-        else{
-            setContentView(R.layout.activity_about_me_registered);
-            Button manageBusButton = findViewById(R.id.manageBus_button);
-            manageBusButton.setOnClickListener(v -> {
-                moveActivity(this, ManageBusActivity.class);
-            });
-        }
-
-        try {
-            getSupportActionBar().hide();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_me);
+        getSupportActionBar().hide();
 
-        TextView email = findViewById(R.id.email);
-        TextView name = findViewById(R.id.username);
-        TextView balance = findViewById(R.id.balance);
-        topUpBalance = findViewById(R.id.topUp);
-        profileInitial = findViewById(R.id.initial);
+        initial = this.findViewById(R.id.initial_name);
+        username = this.findViewById(R.id.username);
+        email = this.findViewById(R.id.email);
+        balance = this.findViewById(R.id.balance);
+        amount = this.findViewById(R.id.top_up_amount);
+        statusRenter = this.findViewById(R.id.status_renter);
+        registerCompany = this.findViewById(R.id.register_company);
+        topUpButton = this.findViewById(R.id.top_up_button);
+        manageBus = this.findViewById(R.id.button_manage_bus);
 
-        String initialS = LoginActivity.loggedAccount.name.toString().charAt(0) + "";
-        String nameS = LoginActivity.loggedAccount.name.toString();
-        String emailS = LoginActivity.loggedAccount.email.toString();
-        Double doub = LoginActivity.loggedAccount.balance;
-        String balanceS = doub.toString();
-
-        profileInitial.setText(initialS);
-        name.setText(nameS);
-        email.setText(emailS);
-        balance.setText(balanceS);
         mContext = this;
         mApiService = UtilsApi.getApiService();
+        handleRefreshAccount();
 
-        Button topUp = findViewById(R.id.topUp_button);
-        topUp.setOnClickListener(v -> {
-            handleTopup();
+        topUpButton.setOnClickListener(v->{
+            handleTopUp();
+        });
+
+        registerCompany.setOnClickListener(v->{
+            startActivity(new Intent(mContext, RegisterRenterActivity.class));
+        });
+
+        manageBus.setOnClickListener(v->{
+            startActivity(new Intent(mContext, ManageBusActivity.class));
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.action_bar_menu, menu);
-        return true;
+    private void loadData(Account a) {
+        initial.setText(""+a.name.toUpperCase().charAt(0));
+        username.setText(a.name);
+        email.setText(a.email);
+        balance.setText("IDR "+a.balance);
+        if (a.company == null) {
+            statusRenter.setText("You're not registered as a renter");
+            manageBus.setVisibility(View.GONE);
+            registerCompany.setVisibility(View.VISIBLE);
+        } else {
+            statusRenter.setText("You're already registered as a renter");
+            manageBus.setVisibility(View.VISIBLE);
+            registerCompany.setVisibility(View.GONE);
+        }
     }
 
-    public void moveActivity(Context ctx, Class<?> cls){
-        Intent intent = new Intent(ctx, cls);
-        startActivity(intent);
-    }
-
-    private void viewToast(Context ctx, String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    protected void handleTopup() {
-        String getBalance = topUpBalance.getText().toString();
-        double newBalance = Double.valueOf(getBalance);
-
-        mApiService.topUp(LoginActivity.loggedAccount.id, newBalance).enqueue(new Callback<BaseResponse<Double>>(){
+    protected void handleTopUp() {
+        String amountS = amount.getText().toString();
+        Double amountD = amountS.isEmpty() ? 0d : Double.parseDouble(amountS);
+        mApiService.topUp(LoginActivity.loggedAcccount.id, amountD).enqueue(new Callback<BaseResponse<Double>>() {
             @Override
             public void onResponse(Call<BaseResponse<Double>> call, Response<BaseResponse<Double>> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(mContext, "Application error " +
-                            response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 BaseResponse<Double> res = response.body();
-                if (res.success) {
-                    finish();
-                    LoginActivity.loggedAccount.balance = LoginActivity.loggedAccount.balance + newBalance;
-                    viewToast(mContext, "TopUp Berhasil");
-                    Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
-                    startActivity(getIntent());
+                if(res.success) {
+                    balance.setText("IDR "+res.payload);
                 }
+                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onFailure(Call<BaseResponse<Double>> call, Throwable t) {
-                Toast.makeText(mContext, "Problem with the server",
-                        Toast.LENGTH_SHORT).show();
-            }
 
+            }
         });
     }
+    protected void handleRefreshAccount() {
+        BaseApiService mApiService = UtilsApi.getApiService();
+        mApiService.getAccountbyId(LoginActivity.loggedAcccount.id).enqueue(new Callback<Account>() {
+            @Override
+            public void onResponse(Call<Account> call, Response<Account> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(mContext, "App error", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                // if success, get the response body
+                Account responseAccount = response.body();
+                loadData(responseAccount);
+            }
+
+            // method for handling error talking to the server
+            @Override
+            public void onFailure(Call<Account> call, Throwable t) {
+                Toast.makeText(mContext, "Problem with the server", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }

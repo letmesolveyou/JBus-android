@@ -4,91 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5EE"
-    android:gravity="center"
+    tools:context=".RegisterRenterActivity"
     android:orientation="vertical"
-    tools:context=".LoginActivity"> <!-- Add this line -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="-20dp"
-        android:fontFamily="@font/poppins_bold"
-        android:gravity="center"
-        android:text="Register your company"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+    android:gravity="center">
 
-    <LinearLayout
-        android:id="@+id/login_form"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="36dp"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="8dp"
+        android:text="Register your company"
+        android:textColor="@color/black"
+        android:textSize="28dp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_semibold"
-            android:gravity="center"
-            android:text="Company Name"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:text="Input company name, address, and phonenumber"
+        android:textColor="@color/black"
+        android:textSize="14dp" />
+
+    <LinearLayout
+        android:id="@+id/registration_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:layout_marginHorizontal="24dp">
 
         <EditText
-            android:id="@+id/companyName"
+            android:id="@+id/company_name"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="10dp"
-            android:hint="Type your company name"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_semibold"
-            android:gravity="center"
-            android:text="Address"
+            android:hint="Company Name"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:inputType="text"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
 
         <EditText
             android:id="@+id/address"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="10dp"
-            android:hint="Type your company address"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_semibold"
-            android:gravity="center"
-            android:text="Phone Number"
+            android:hint="Address"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:inputType="text"
+            android:layout_marginBottom="20dp"/>
 
         <EditText
-            android:id="@+id/phoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="10dp"
-            android:hint="Type your company phone number"
-            android:inputType="number"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/registerCompany_button"
+            android:id="@+id/phonenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#D3F16B"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="10dp"
-            android:text="REGISTER"
+            android:hint="Phone Number"
             android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/button_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/black"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:text="REGISTER"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             app:cornerRadius="21dp" />
+
+
     </LinearLayout>
+
 </LinearLayout>

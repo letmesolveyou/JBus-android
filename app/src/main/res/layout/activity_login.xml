@@ -4,100 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5EE"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".LoginActivity"> <!-- Add this line -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:gravity="center"
-        android:text="JBUS"
-        android:textColor="@color/black"
-        android:textSize="40sp" />
+    android:background="#6C68A6"
+    android:backgroundTint="#6C68A6"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="428dp"
+        android:layout_height="312dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/login" />
 
     <LinearLayout
-        android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="36dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="3dp">
 
-        <TextView
-            android:id="@+id/emailtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_semibold"
-            android:text="Email"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginBottom="10dp"
-            android:hint="Type your email"
-            android:inputType="textEmailAddress"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/passtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_semibold"
-            android:text="Password"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="10dp"
-            android:hint="Type your password"
-            android:inputType="textPassword"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/login_button"
+        <LinearLayout
+            android:id="@+id/login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#D3F26B"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="10dp"
-            android:text="LOGIN"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            app:cornerRadius="21dp" />
+            android:layout_marginHorizontal="36dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="Don't have an account?"
-            android:textAlignment="center"
-            android:textColor="#000000" />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_email_icon"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/montserrat"
+                android:hint=" Email"
+                android:inputType="textEmailAddress"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/register_now"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:paddingHorizontal="16dp"
-            android:text="Register Now"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_lock_icon"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/montserrat"
+                android:hint=" Password"
+                android:inputType="textPassword"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="@color/black" />
 
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins_bold"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="12dp"
+                android:text="LOGIN"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                app:cornerRadius="21dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="Don't have an account?"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/register_now"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:text="Register Now"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

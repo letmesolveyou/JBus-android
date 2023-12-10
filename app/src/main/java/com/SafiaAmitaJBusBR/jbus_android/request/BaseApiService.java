@@ -3,12 +3,17 @@ package com.SafiaAmitaJBusBR.jbus_android.request;
 import com.SafiaAmitaJBusBR.jbus_android.model.Account;
 import com.SafiaAmitaJBusBR.jbus_android.model.BaseResponse;
 import com.SafiaAmitaJBusBR.jbus_android.model.Bus;
+import com.SafiaAmitaJBusBR.jbus_android.model.BusType;
+import com.SafiaAmitaJBusBR.jbus_android.model.Facility;
+import com.SafiaAmitaJBusBR.jbus_android.model.Payment;
 import com.SafiaAmitaJBusBR.jbus_android.model.Renter;
+import com.SafiaAmitaJBusBR.jbus_android.model.Station;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -21,8 +26,7 @@ public interface BaseApiService {
     Call<BaseResponse<Account>> register (
             @Query("name") String name,
             @Query("email") String email,
-            @Query("password") String password
-    );
+            @Query("password") String password);
 
     @POST("account/login")
     Call<BaseResponse<Account>> login (
@@ -33,20 +37,81 @@ public interface BaseApiService {
     @POST("account/{id}/topUp")
     Call<BaseResponse<Double>> topUp(
             @Path("id") int id,
-            @Query ("amount") Double amount
+            @Query("amount") double amount
     );
 
-    @POST("account/registerRenter")
-    Call<BaseResponse<Renter>> registerRenter (
-            @Query("company name") String name,
+    @POST("account/{id}/registerRenter")
+    Call<BaseResponse<Renter>> registerRenter(
+            @Path("id") int id,
+            @Query("companyName") String companyName,
             @Query("address") String address,
-            @Query("phone number") String phoneNumber
+            @Query("phoneNumber") String phoneNumber
     );
 
     @GET("bus/getMyBus")
-    Call<List<Bus>> getMyBus(
+    Call<BaseResponse<List<Bus>>> getMyBus(
             @Query("accountId") int accountId
     );
 
-}
+    @GET("station/getAll")
+    Call<List<Station>> getAllStation();
 
+    @POST("bus/create")
+    Call<BaseResponse<Bus>> addBus(
+            @Query("accountId") int accountId,
+            @Query("name") String name,
+            @Query("capacity") int capacity,
+            @Query("facilities") List<Facility> facilities,
+            @Query("busType") BusType busType,
+            @Query("price") int price,
+            @Query("stationDepartureId") int stationDepartureId,
+            @Query("stationArrivalId") int stationArrivalId
+    );
+    @POST("bus/addSchedule")
+    Call<BaseResponse<Bus>> addSchedule(
+            @Query("busId") int busId,
+            @Query("time") String time
+    );
+
+    @GET("bus/getAllBus")
+    Call<BaseResponse<List<Bus>>> getAllBus();
+
+    @POST("payment/makeBooking")
+    Call<BaseResponse<Payment>> makeBooking(
+            @Query("buyerId") int buyerId,
+            @Query("renterId") int renterId,
+            @Query("busId") int busId,
+            @Query("busSeats") List<String> busSeats,
+            @Query("departureDate") String departureDate
+    );
+
+    @GET("payment/getMySeat")
+    Call<BaseResponse<List<Payment>>> getMySeat(
+            @Query("buyerId") int buyerId
+    );
+
+    @GET("payment/getBuyerPayment")
+    Call<BaseResponse<List<Payment>>> getBuyerPayment(
+            @Query("buyerId") int buyerId
+    );
+
+    @GET("bus/getBusPrice")
+    Call<BaseResponse<Bus>> getBusPrice(
+            @Query("busId") int busId
+    );
+
+    @POST("payment/{id}/accept")
+    Call<BaseResponse<Payment>> accept(
+            @Path("id") int id
+    );
+
+    @POST("payment/{id}/cancel")
+    Call<BaseResponse<Payment>> cancel(
+            @Path("id") int id
+    );
+
+    @POST("payment/deletePayment")
+    Call<BaseResponse<Payment>> deletePayment(
+            @Query("id") int id
+    );
+}

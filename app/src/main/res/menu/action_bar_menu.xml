@@ -7,12 +7,12 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always"/>
 
-    <item android:id="@+id/profile_button"
+    <item android:id="@+id/profile"
         android:icon="@drawable/baseline_account_circle_24"
         android:title="Profile button"
         app:showAsAction="collapseActionView|always"/>
 
-    <item android:id="@+id/payment_button"
+    <item android:id="@+id/payment"
         android:icon="@drawable/baseline_payment_24"
         android:title="Payment button"
         app:showAsAction="collapseActionView|always"/>

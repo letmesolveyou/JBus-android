@@ -1,267 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".AddBusActivity">
+    android:background="#FFF6EF"
+    tools:context=".AddBusActivity"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/addBus"
+        android:id="@+id/titleAddBus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top|center"
-        android:paddingLeft="5dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
         android:text="Add Bus"
         android:textColor="@color/black"
-        android:textSize="35sp"
-        android:typeface="normal" />
+        android:textSize="32dp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top|center"
-        android:paddingLeft="15dp"
-        android:text="Add or edit your bus!"
+        android:layout_marginHorizontal="24dp"
+        android:text="Add or edit your bus"
         android:textColor="@color/black"
-        android:textSize="13sp"
-        android:typeface="normal" />
+        android:textSize="14dp" />
 
     <LinearLayout
+        android:id="@+id/bus_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:background="#00FFFFFF"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginHorizontal="24dp">
 
         <EditText
-            android:id="@+id/busName"
+            android:id="@+id/bus_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
             android:hint="Bus Name"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/capacity"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content"
             android:hint="Capacity"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="12dp"/>
 
         <EditText
             android:id="@+id/price"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
             android:hint="Price"
-            android:inputType="textPhonetic"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
-        android:paddingTop="30dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="3dp">
-
-        <TextView
-            android:layout_width="101dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:text="Bus Type"
             android:textColor="@color/black"
-            android:textSize="17dp" />
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="1dp"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_directions_bus_24"
-            app:tint="@color/black" />
-
-        <Spinner
-            android:id="@+id/bus_type_dropdown"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="3dp">
-
-        <TextView
-            android:layout_width="96dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:text="Departure"
-            android:textColor="@color/black"
-            android:textSize="17dp" />
+            android:orientation="horizontal"
+            android:paddingHorizontal="3dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="center">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_home_24"
-            app:tint="@color/black" />
+            <TextView
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:text="Bus Type"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_directions_bus_24"
+                app:tint="@color/black" />
+            <Spinner
+                android:id="@+id/bus_type_dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
 
-        <Spinner
-            android:id="@+id/departure_dropdown"
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="3dp">
-
-        <TextView
-            android:layout_width="96dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:text="Arrival"
-            android:textColor="@color/black"
-            android:textSize="17dp" />
+            android:orientation="horizontal"
+            android:paddingHorizontal="3dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="center">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_arrow_forward_24"
-            app:tint="@color/black" />
+            <TextView
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:text="Departure"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
 
-        <Spinner
-            android:id="@+id/arrival_dropdown"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_home_24"
+                app:tint="@color/black"
+                android:layout_gravity="center"/>
+            <Spinner
+                android:id="@+id/stat_depart_dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="3dp"
+            android:layout_marginBottom="1dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:text="Arrival"
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_arrow_forward_24"
+                app:tint="@color/black"
+                android:layout_gravity="center"/>
+            <Spinner
+                android:id="@+id/stat_dest_dropdown"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="3dp"
+            android:layout_marginVertical="10dp">
+
+            <TextView
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:text="Facilities"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="8dp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="3"
+                android:columnCount="3">
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="10dp">
+
+                    <CheckBox
+                        android:id="@+id/ac_cb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/black"
+                        android:checked="false"
+                        android:text="AC" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="10dp">
+                <CheckBox
+                    android:id="@+id/wifi_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:buttonTint="@color/black"
+                    android:text="WiFi"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="10dp">
+                <CheckBox
+                    android:id="@+id/toilet_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:buttonTint="@color/black"
+                    android:text="Toilet"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="10dp">
+                <CheckBox
+                    android:id="@+id/lcd_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:buttonTint="@color/black"
+                    android:text="LCD TV"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="10dp">
+                <CheckBox
+                    android:id="@+id/coolbox_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:buttonTint="@color/black"
+                    android:text="Coolbox"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="10dp">
+                <CheckBox
+                    android:id="@+id/lunch_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:buttonTint="@color/black"
+                    android:text="Lunch"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="10dp">
+                <CheckBox
+                    android:id="@+id/baggage_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:buttonTint="@color/black"
+                    android:text="Large Baggage"/>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="10dp">
+                <CheckBox
+                    android:id="@+id/electric_cb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/black"
+                    android:checked="false"
+                    android:text="Electric Socket"/>
+                </androidx.cardview.widget.CardView>
+            </GridLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_add_bus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:backgroundTint="@color/black"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:text="ADD"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:cornerRadius="21dp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/facilities"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:paddingTop="30dp"
-        android:paddingLeft="15dp"
-        android:text="Facilities"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:typeface="normal" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        >
-
-        <CheckBox
-            android:id="@+id/checkBox_ac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AC"
-            android:textColor="@color/black"
-            android:layout_marginL="50dp"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_wifi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WiFi"
-            android:textColor="@color/black"
-            android:layout_marginLeft="103dp"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_toilet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Toilet"
-            android:textColor="@color/black"
-            android:layout_marginLeft="85dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="15dp"
-        >
-
-        <CheckBox
-            android:id="@+id/checkBox_lcdTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LCD TV"
-            android:textColor="@color/black"
-            android:layout_marginL="50dp"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_coolBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Coolbox"
-            android:textColor="@color/black"
-            android:layout_marginLeft="70dp"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_lunch"
-            android:layout_width="92dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:text="Lunch"
-            android:textColor="@color/black" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="15dp"
-        >
-
-        <CheckBox
-            android:id="@+id/checkBox_largeBaggage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Large Baggage"
-            android:textColor="@color/black"
-            android:layout_marginL="50dp"/>
-
-        <CheckBox
-            android:id="@+id/checkBox_electricSocket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Electric Socket"
-            android:textColor="@color/black"
-            android:layout_marginLeft="23dp"/>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/add_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#D3F16B"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp"
-        android:text="ADD"
-        android:textColor="#000000"
-        app:cornerRadius="21dp" />
 
 </LinearLayout>

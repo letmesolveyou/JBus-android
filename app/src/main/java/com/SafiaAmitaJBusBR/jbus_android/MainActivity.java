@@ -17,10 +17,18 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.SafiaAmitaJBusBR.jbus_android.model.BaseResponse;
 import com.SafiaAmitaJBusBR.jbus_android.model.Bus;
+import com.SafiaAmitaJBusBR.jbus_android.request.BaseApiService;
+import com.SafiaAmitaJBusBR.jbus_android.request.UtilsApi;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
     private int pageSize = 12;
     private int listSize;
     private int noOfPages;
-    private List<Bus> listBus = new ArrayList<>();
+    public static List<Bus> listBus = new ArrayList<>();
     private Button prevButton, nextButton = null;
     private ListView busListView = null;
     private HorizontalScrollView pageScroll = null;
+    private BaseApiService mApiService;
+    private Context mContext;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater actionBar = getMenuInflater();
@@ -44,8 +54,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.profile_button) {
+        if (id == R.id.profile) {
             Intent intent = new Intent(this, AboutMeActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        if (id == R.id.payment) {
+            Intent intent = new Intent(this, PaymentActivity.class);
             startActivity(intent);
             return true;
         }
@@ -57,19 +72,15 @@ public class MainActivity extends AppCompatActivity {
         this.getSupportActionBar().setDisplayShowTitleEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // Update the layout file here
+
+        mApiService = UtilsApi.getApiService();
+        mContext = this;
+
+        handleBusView();
         prevButton = findViewById(R.id.prev_page);
         nextButton = findViewById(R.id.next_page);
         pageScroll = findViewById(R.id.page_number_scroll);
-        busListView = findViewById(R.id.listView);
-
-        List<Bus> buses = Bus.sampleBusList(20);
-        BusArrayAdapter adapter = new BusArrayAdapter(this, buses);
-        busListView.setAdapter(adapter);
-        listBus = Bus.sampleBusList(20);
-        listSize = listBus.size();
-
-        paginationFooter();
-        goToPage(currentPage);
+        busListView = findViewById(R.id.bus_list_view);
 
         prevButton.setOnClickListener(v -> {
             currentPage = currentPage != 0 ? currentPage - 1 : 0;
@@ -78,6 +89,31 @@ public class MainActivity extends AppCompatActivity {
         nextButton.setOnClickListener(v -> {
             currentPage = currentPage != noOfPages - 1 ? currentPage + 1 : currentPage;
             goToPage(currentPage);
+        });
+    }
+
+    protected void handleBusView() {
+        mApiService.getAllBus().enqueue(new Callback<BaseResponse<List<Bus>>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<List<Bus>>> call, Response<BaseResponse<List<Bus>>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(mContext, "Application error " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                BaseResponse<List<Bus>> res = response.body();
+                if (res.success){
+                    listBus = res.payload;
+                    listSize = listBus.size();
+                    paginationFooter();
+                    goToPage(currentPage);
+                }
+                Toast.makeText(mContext, res.message, Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onFailure(Call<BaseResponse<List<Bus>>> call, Throwable t) {
+                Toast.makeText(mContext, "Problem with the server",
+                        Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -131,7 +167,8 @@ public class MainActivity extends AppCompatActivity {
         List<Bus> paginatedList = listBus.subList(startIndex, endIndex);
 
         BusArrayAdapter numberArrayAdapt = new BusArrayAdapter(this, paginatedList);
-        ListView numberListView = findViewById(R.id.listView);
+        ListView numberListView = findViewById(R.id.bus_list_view);
         numberListView.setAdapter(numberArrayAdapt);
     }
+
 }
